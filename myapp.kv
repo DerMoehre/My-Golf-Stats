@@ -1,0 +1,140 @@
+<Output>:
+    on_enter: root.update_graph(), root.update_stat()
+    BoxLayout:
+        id: graph
+        size_hint_y: .7
+        pos_hint: {"top":1}
+        padding: 10, 10, 10, 10
+    BoxLayout:
+        size_hint_y: .6
+        Label:
+            text: "Legende"
+        Label:
+            text: "Netto-Punkte"
+            color: 1, 1, 0, 1
+        Label:
+            text: "#Schläge"
+            color: 1, 0, 0, 1
+    BoxLayout:
+        size_hint_y: .4
+        Label:
+            text: "#Schläge"
+        Label:
+            text: "Netto-Punkte"
+        Label:
+            text: "#Spiele"
+    BoxLayout:
+        size_hint_y: .3
+        Label:
+            id: lbl_schlag
+            text: "-"
+        Label:
+            id: lbl_punkt
+            text: "-"
+        Label:
+            id: lbl_spiel
+            text: "-"
+    BoxLayout:
+        size_hint_y: .1
+        Button:
+            text: "Neue Runde"
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current ='runde'
+        Button:
+            text: "Neuer Platz"
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current ='platz' 
+
+<RundeScreen>:
+    on_leave: root.clear_input()
+    BoxLayout:
+        size_hint_y: .7
+        pos_hint: {"top":1}
+        orientation: "vertical"
+        padding: 10, 10, 10, 10
+        BoxLayout:
+            Label:
+                text: "Datum"
+            TextInput:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                multiline: False
+                id: datum_input
+                on_text: 
+        BoxLayout:
+            Label:
+                text: "Gespielter Golfplatz"
+            Spinner:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}            
+                id: platz_spinner
+                text: "Golfplatz"
+                values: root.get_course()
+        BoxLayout:
+            Label:
+                text: "9 oder 18-Löcher"
+            Spinner:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                id: variante_spinner
+                text: "Variante"
+                values: ["9", "18"]
+        BoxLayout:
+            Label:
+                text: "Gespielter Abschlag"
+            Spinner:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                id: abschlag_spinner
+                text: "Abschlag"
+                values: ["Herren-Gelb","Damen-Rot"] 
+        BoxLayout:
+            Label:
+                text: "Benötigte Schläge"
+            TextInput:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                id: schlag_input
+                on_text:  
+        BoxLayout:
+            Label:
+                text: "Anzahl Netto-Punkte"
+            TextInput:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                id: punkte_input
+                on_text:  
+        BoxLayout:
+            Label:
+                text: "Handicap"
+            TextInput:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                id: hcp_input
+                on_text:                                                                                
+    BoxLayout:
+        size_hint_y: .1
+        Button:
+            text: "Submit"
+            on_press: 
+                root.submit()
+                root.manager.transition.direction = 'left'
+                root.manager.current ='output'
+        Button:
+            text: "Zurück"
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current ='output'
+
+<PlatzScreen>:
+    BoxLayout:
+        id: runde_input
+        size_hint_y: .7
+        pos_hint: {"top":1}
+    BoxLayout:
+        size_hint_y: .1
+        Button:
+            text: "Submit"
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current ='output'
+        Button:
+            text: "Zurück"
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current ='output'

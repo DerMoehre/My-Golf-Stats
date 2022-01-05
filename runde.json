@@ -1,0 +1,17 @@
+{
+    "gespielte_runde": [
+        {
+            "datum": "",
+            "golfplatz": "",
+            "variante": 9,
+            "abschlag": "",
+            "schlaege": 0,
+            "netto_punkte": 0,
+            "handicap": 0,
+            "var_neu": 0,
+            "schlag_neu": 0,
+            "netto_punkte_neu": 0,
+            "hochgerechnet": true
+        }
+    ]
+}
