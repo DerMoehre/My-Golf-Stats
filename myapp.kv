@@ -181,6 +181,7 @@
         Button:
             text: "Submit"
             on_press: 
+                root.submit()
                 root.manager.transition.direction = 'right'
                 root.manager.current ='output'
         Button:
