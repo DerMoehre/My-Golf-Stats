@@ -20,6 +20,13 @@ def write_runde(new_data, filename="runde.json"):
         file.seek(0)
         json.dump(file_data, file, indent = 4)
 
+def write_kurs(new_data, filename="course.json"):
+    with open(filename,'r+') as file:
+        file_data = json.load(file)
+        file_data["platz"].append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent = 4)
+
 def calc_nine(data):
     data["var_neu"] = 18
     data["schlag_neu"] = data["schlaege"]*2 + 1
@@ -38,7 +45,7 @@ def kurs_par():
         num_par.append(json_course[item]["par"])
     return num_par
 
-def input_data(data):
+def input_data_runde(data):
     if data["variante"] == 9:
         write_runde(calc_nine(data))
     else:
@@ -174,8 +181,9 @@ class RundeScreen(Screen):
          "schlaege": int(self.ids.schlag_input.text),
          "netto_punkte": int(self.ids.punkte_input.text),
          "handicap": int(self.ids.hcp_input.text),
+         "hochgerechnet": False
         }
-        input_data(data)
+        input_data_runde(data)
         Output().update_stat()
 
     def clear_input(self):
@@ -188,11 +196,26 @@ class RundeScreen(Screen):
         self.ids.hcp_input.text = ""
 
 class PlatzScreen(Screen):
-    def neuer_Platz(self):
-        pass
 
+    def clear_input(self):
+        self.ids.course_name.text = ""
+        self.ids.course_par.text = ""
+        self.ids.variante_spinner.text = "9 oder 18-Löcher"
+        self.ids.course_rating_m.text = ""
+        self.ids.course_rating_w.text = ""
+        self.ids.course_slope_m.text = ""
+        self.ids.course_slope_w.text = ""
 
-#Builder.load_file('myapp.kv')
+    def submit(self):
+        data = { "name": self.ids.course_name.text,
+            "par": int(self.ids.course_par.text),
+            "loch_anz": int(self.ids.variante_spinner.text),
+            "rating_herren_gelb": int(self.ids.course_rating_m.text),
+            "rating_damen_rot": int(self.ids.course_rating_w.text),
+            "slope_herren_gelb": int(self.ids.course_slope_m.text),
+            "slope_damen_rot": int(self.ids.course_slope_w.text)
+            }
+        write_kurs(data)
 
 class MyApp(MDApp):
 

@@ -123,10 +123,59 @@
                 root.manager.current ='output'
 
 <PlatzScreen>:
+    on_leave: root.clear_input()
     BoxLayout:
         id: runde_input
         size_hint_y: .7
+        orientation: "vertical"
         pos_hint: {"top":1}
+
+        MDTextField:
+            id: course_name
+            line_color_focus: "green"
+            hint_text: "Name Golfplatz"
+
+        MDTextField:
+            id: course_par
+            line_color_focus: "green"
+            hint_text: "Kurs Par"
+            input_type: "number"
+            input_filter: "int"
+
+        Spinner:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            id: variante_spinner
+            text: "9 oder 18-Löcher"
+            values: ["9", "18"]
+
+        MDTextField:
+            id: course_rating_m
+            line_color_focus: "green"
+            hint_text: "Kurs Rating Herren-Gelb"
+            input_type: "number"
+            input_filter: "float"
+
+        MDTextField:
+            id: course_rating_w
+            line_color_focus: "green"
+            hint_text: "Kurs Rating Damen-Rot"
+            input_type: "number"
+            input_filter: "float"
+
+        MDTextField:
+            id: course_slope_m
+            line_color_focus: "green"
+            hint_text: "Kurs Slope Herren-Gelb"
+            input_type: "number"
+            input_filter: "int"
+
+        MDTextField:
+            id: course_slope_w
+            line_color_focus: "green"
+            hint_text: "Kurs Slope Damen-Rot"
+            input_type: "number"
+            input_filter: "int"
+
     BoxLayout:
         size_hint_y: .1
         Button:

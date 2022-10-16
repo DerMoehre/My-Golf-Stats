@@ -1,38 +1,13 @@
 {
- "Golfrange Dortmund": 
-    {
-        "par": 64,
-        "loch_anz": 9,
-        "course_rating":[
-            {
-                "herren_gelb": 62.6,
-                "damen_rot": 63.8
-            }
-        ],
-        "slope": [
-            {
-                "herren_gelb": 116,
-                "damen_rot": 111
-            }
-        ]
-    },
-"Royal Saint Barbara Dortmund": 
-    {
-        "par": 72,
-        "loch_anz": 18,
-        "course_rating":[
-            {
-                "herren_gelb": 72.1,
-                "damen_rot": 72.2
-            }
-        ],
-        "slope": [
-            {
-                "herren_gelb": 129,
-                "damen_rot": 129
-            }
-        ]
-
-    }       
+    "platz": [
+        {
+            "name": "Golfrange Dortmund",
+            "par": 64,
+            "loch_anz": 9,
+            "rating_herren_gelb": 62.6,
+            "rating_damen_rot": 63.8,
+            "slope_herren_gelb": 116,
+            "slope_damen_rot": 111
+        }
+    ]
 }
-    
