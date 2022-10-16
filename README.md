@@ -26,7 +26,6 @@ Here is a list of features, I would like to add to this app (or better, try to a
 
 - bug-fixes
   - the app still shows the first point in the graph at 0,0
-  - the app crashes, if the input is not completly filled/filled with characters and not numbers
 
 - features
   - show data as a list

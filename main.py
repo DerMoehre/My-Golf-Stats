@@ -1,7 +1,8 @@
-from kivy.app import App 
+from kivymd.app import MDApp 
 from kivy.lang import Builder
 from kivy_garden.graph import Graph, LinePlot
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivymd.uix.pickers import MDDatePicker
 import json
 
 ###GLOBALE FUNKTIONEN###
@@ -153,6 +154,14 @@ class Output(Screen):
 
 class RundeScreen(Screen):
 
+    def on_save(self, instance, value, range):
+        self.ids.datum_input.text = str(value)
+
+    def show_date_picker(self):
+        date_dialog = MDDatePicker()
+        date_dialog.bind(on_save=self.on_save)
+        date_dialog.open()
+
     def get_course(self):
         self.json_course = open_json("course.json")
         return self.json_course.keys()
@@ -182,15 +191,21 @@ class PlatzScreen(Screen):
     def neuer_Platz(self):
         pass
 
-Builder.load_file('myapp.kv')
-sm = ScreenManager()
-sm.add_widget(Output(name='output'))
-sm.add_widget(RundeScreen(name='runde'))
-sm.add_widget(PlatzScreen(name='platz'))
 
-class MyApp(App):
+#Builder.load_file('myapp.kv')
+
+class MyApp(MDApp):
 
     def build(self): 
+
+        sm = ScreenManager()
+        sm.add_widget(Output(name='output'))
+        sm.add_widget(RundeScreen(name='runde'))
+        sm.add_widget(PlatzScreen(name='platz'))
+
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = 'BlueGray'
+
         return sm
 
 if __name__ == "__main__":

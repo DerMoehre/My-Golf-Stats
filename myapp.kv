@@ -54,59 +54,60 @@
         pos_hint: {"top":1}
         orientation: "vertical"
         padding: 10, 10, 10, 10
+
         BoxLayout:
-            Label:
+            padding: 10, 10, 10, 10
+            MDRaisedButton:
                 text: "Datum"
-            TextInput:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                multiline: False
                 id: datum_input
+                height: root.height*0.1
+                size_hint: None, None
+                on_release: root.show_date_picker()
                 on_text: 
+
         BoxLayout:
-            Label:
-                text: "Gespielter Golfplatz"
             Spinner:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}            
                 id: platz_spinner
-                text: "Golfplatz"
+                text: "Gespielter Golfplatz"
                 values: root.get_course()
+
         BoxLayout:
-            Label:
-                text: "9 oder 18-Löcher"
             Spinner:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 id: variante_spinner
-                text: "Variante"
+                text: "9 oder 18-Löcher"
                 values: ["9", "18"]
+
         BoxLayout:
-            Label:
-                text: "Gespielter Abschlag"
             Spinner:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 id: abschlag_spinner
                 text: "Abschlag"
                 values: ["Herren-Gelb","Damen-Rot"] 
-        BoxLayout:
-            Label:
-                text: "Benötigte Schläge"
-            TextInput:
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                id: schlag_input
-                on_text:  
-        BoxLayout:
-            Label:
-                text: "Anzahl Netto-Punkte"
-            TextInput:
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                id: punkte_input
-                on_text:  
-        BoxLayout:
-            Label:
-                text: "Handicap"
-            TextInput:
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                id: hcp_input
-                on_text:                                                                                
+
+        MDTextField:
+            id: schlag_input
+            line_color_focus: "green"
+            hint_text: "Benötigte Schläge"
+            input_type: "number"
+            input_filter: "int"
+
+        MDTextField:
+            id: punkte_input
+            line_color_focus: "green"
+            hint_text: "Netto Punkte"
+            input_type: "number"
+            input_filter: "int"
+
+        MDTextField:
+            id: hcp_input
+            line_color_focus: "green"
+            hint_text: "Handicap"
+            input_type: "number"
+            input_filter: "int"
+                                                                            
     BoxLayout:
         size_hint_y: .1
         Button:
